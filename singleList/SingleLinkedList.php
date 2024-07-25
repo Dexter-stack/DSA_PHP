@@ -36,6 +36,21 @@ class SingleLinkedList{
     }
 
 
+
+    public function insertFirst($data){
+
+        $newNode = new Node($data);
+        if($this->head == null){
+            $this->head  = $newNode;
+            
+        }
+
+        $newNode->nextNode = $this->head; // link the newNode to the head 
+        $this->head = $newNode; // then shift the head to the newNode
+
+    }
+
+
 }
 
 $head =  new Node(57);
@@ -50,6 +65,9 @@ $head->nextNode = $first;
 $first->nextNode = $second;
 $second->nextNode = $third;
 $third->nextNode = null;
+$list->insertFirst(34);
+$list->insertFirst(67);
+
 
 
 $list->display();
