@@ -50,6 +50,22 @@ class SingleLinkedList{
 
     }
 
+    public function insertLast($data){
+        $newNode = new Node($data);
+
+        if($this->head == null){
+            $this->head =  $newNode;
+        }
+        $currentNode = $this->head;
+        while($currentNode->nextNode != null){
+            $currentNode =  $currentNode->nextNode;
+
+        }
+         $currentNode->nextNode = $newNode; // link the new node with the current node 
+         $newNode->nextNode = null;  // then link the new node before the null
+
+    }
+
 
 }
 
@@ -67,6 +83,8 @@ $second->nextNode = $third;
 $third->nextNode = null;
 $list->insertFirst(34);
 $list->insertFirst(67);
+$list->insertLast(46);
+$list->insertLast(68);
 
 
 
