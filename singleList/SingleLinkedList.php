@@ -68,37 +68,33 @@ class SingleLinkedList
     }
 
 
-    public function insertNthPosition($position, $data){
+    public function insertNthPosition($position, $data)
+    {
 
         $newNode  = new Node($data);
-        if($position == 1){
+        if ($position == 1) {
             $newNode->nextNode = $this->head;
             $this->head = $newNode;
-        }else{
+        } else {
 
             $count = 1;
             $previousNode = $this->head;  // the previous is pointing
-            
-            while($count < $position-1){
-   
-           $previousNode = $previousNode->nextNode;
-           $count = $count+1;
-              
-   
-   
+
+            while ($count < $position - 1) {
+
+                $previousNode = $previousNode->nextNode;
+                $count = $count + 1;
             }
-         $currentNode = $previousNode->nextNode;  // keep the current node here 
-         $previousNode->nextNode = $newNode;   // link the new node with the previous node 
-         $newNode->nextNode = $currentNode;   // shift the new node before the current node 
-       
-   
+            $currentNode = $previousNode->nextNode;  // keep the current node here 
+            $previousNode->nextNode = $newNode;   // link the new node with the previous node 
+            $newNode->nextNode = $currentNode;   // shift the new node before the current node 
+
+
 
         }
-
-        
-
-
     }
+
+   
 }
 
 $head =  new Node(57);
@@ -126,7 +122,7 @@ implementing the insertLast($data) function
 $list->insertLast(46);
 $list->insertLast(68);
 
-$list->insertNthPosition(3,200);
+$list->insertNthPosition(3, 200);
 
 
 
