@@ -168,7 +168,26 @@ class SingleLinkedList
     }
 
 
-    
+    public function reverse()
+    {
+
+        if ($this->head == null) {
+            return null;
+        }
+
+        $nextNode = null;
+        $currentNode = $this->head;
+        $previousNode = null;
+
+        while ($currentNode != null) {
+            $nextNode = $currentNode->nextNode;
+            $currentNode->nextNode = $previousNode;
+            $previousNode = $currentNode;
+            $currentNode = $nextNode;
+        }
+
+        $this->head = $previousNode;
+    }
 }
 
 $head =  new Node(57);
@@ -221,3 +240,8 @@ if ($list->search(78)) {
 } else {
     echo "key not founcd";
 }
+
+$list->reverse();
+echo "<br>";
+echo "The reversed List : ";
+$list->display();
