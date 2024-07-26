@@ -128,6 +128,27 @@ class SingleLinkedList
     /*
     Q. Implement method to delete a node at a given position. Assuming position to be valid and starting from 1.
      */
+
+     public function deleteNthPostion($position){
+        if($position == 1){
+            $this->head = $this->head->nextNode;
+
+        }
+
+        $count = 1;
+        $previousNode = $this->head;
+
+        while($count<$position-1){
+
+            $previousNode = $previousNode->nextNode;
+            $count++;
+
+        }
+        $currentNode = $previousNode->nextNode;
+        $previousNode->nextNode = $currentNode->nextNode;
+        return $currentNode;
+
+     }
 }
 
 $head =  new Node(57);
@@ -156,10 +177,16 @@ $list->insertLast(46);
 $list->insertLast(68);
 
 $list->insertNthPosition(3, 200);
+$list->display();
 
   echo "Deleted data : ". $list->deleteFirst()->data  ."<br>";
 
+  $list->display();
+
   echo "Deleted data : ". $list->deleteLast()->data  ."<br>";
+  $list->display();
+
+  echo "Deleted data : ". $list->deleteNthPostion(3)->data  ."<br>";
 
 
 
