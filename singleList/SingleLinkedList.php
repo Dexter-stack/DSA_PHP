@@ -94,61 +94,81 @@ class SingleLinkedList
         }
     }
 
-   
 
-    public function deleteFirst(){
-        if($this->head == null || $this->head->nextNode == null){
+
+    public function deleteFirst()
+    {
+        if ($this->head == null || $this->head->nextNode == null) {
             return $this->head;
         }
 
         $tempNode =  $this->head;
-      $this->head =  $this->head->nextNode ;
+        $this->head =  $this->head->nextNode;
         $tempNode->nextNode = null;
         return $tempNode;
     }
 
 
 
-    public function deleteLast(){
-        if($this->head == null ){
+    public function deleteLast()
+    {
+        if ($this->head == null) {
             return null;
         }
-     $currentNode = $this->head ;
-     $previousNode = null;
-        while($currentNode->nextNode != null ){
+        $currentNode = $this->head;
+        $previousNode = null;
+        while ($currentNode->nextNode != null) {
             $previousNode = $currentNode;
             $currentNode = $currentNode->nextNode;
         }
-       
-       $previousNode->nextNode = null;
-       return $currentNode;
+
+        $previousNode->nextNode = null;
+        return $currentNode;
     }
 
-    
+
     /*
     Q. Implement method to delete a node at a given position. Assuming position to be valid and starting from 1.
      */
 
-     public function deleteNthPostion($position){
-        if($position == 1){
+    public function deleteNthPostion($position)
+    {
+        if ($position == 1) {
             $this->head = $this->head->nextNode;
-
         }
 
         $count = 1;
         $previousNode = $this->head;
 
-        while($count<$position-1){
+        while ($count < $position - 1) {
 
             $previousNode = $previousNode->nextNode;
             $count++;
-
         }
         $currentNode = $previousNode->nextNode;
         $previousNode->nextNode = $currentNode->nextNode;
         return $currentNode;
+    }
 
-     }
+    public function search($searchKey)
+    {
+
+        if ($this->head == null) {
+            return false;
+        }
+
+        $currentNode = $this->head;
+        while ($currentNode != null) {
+            if ($currentNode->data == $searchKey) {
+                return true;
+            }
+            $currentNode = $currentNode->nextNode;
+        }
+        return false;
+    }
+
+
+    
 }
 
 $head =  new Node(57);
@@ -179,15 +199,25 @@ $list->insertLast(68);
 $list->insertNthPosition(3, 200);
 $list->display();
 
-  echo "Deleted data : ". $list->deleteFirst()->data  ."<br>";
+echo "Deleted data : " . $list->deleteFirst()->data  . "<br>";
 
-  $list->display();
+$list->display();
 
-  echo "Deleted data : ". $list->deleteLast()->data  ."<br>";
-  $list->display();
+echo "Deleted data : " . $list->deleteLast()->data  . "<br>";
+$list->display();
 
-  echo "Deleted data : ". $list->deleteNthPostion(3)->data  ."<br>";
+echo "Deleted data : " . $list->deleteNthPostion(3)->data  . "<br>";
+
+
 
 
 
 $list->display();
+
+echo "<br>";
+
+if ($list->search(78)) {
+    echo "key found";
+} else {
+    echo "key not founcd";
+}
